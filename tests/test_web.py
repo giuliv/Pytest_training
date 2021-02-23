@@ -20,8 +20,8 @@ def browser():
 
 def test_login(browser):
     #URL =
-    USERNAME = 'qaregressionteam'
-    PWD = '@ppetiz3!'
+    #USERNAME =
+    #PWD = 
     VENUE = '393'
     NAME_ITEM = 'autogiuli'
     COST_ITEM = '11'
