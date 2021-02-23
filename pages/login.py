@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from pages.base_page import BasePage
 
 class ConnectLoginPage(BasePage):
-    URL = 'https://connect.sandbox.appetize-dev.com'
+    #URL =
 
     USER_INPUT = (By.ID, 'login')
     PWD_INPUT = (By.ID, 'password')

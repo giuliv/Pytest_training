@@ -19,7 +19,7 @@ def browser():
 
 
 def test_login(browser):
-    URL = 'https://connect.sandbox.appetize-dev.com'
+    #URL =
     USERNAME = 'qaregressionteam'
     PWD = '@ppetiz3!'
     VENUE = '393'
