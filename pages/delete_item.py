@@ -7,6 +7,7 @@ class ItemDeleteItem:
     SEARCH_BAR = (By.XPATH, '/html/body/div[1]/main/div[2]/div[1]/div[2]/div[1]/div/input')
     SEARCH_BAR = (By.NAME, 'search_text')
     ITEM_NAME = 'autogiuli'
+
     def __init__(self, browser):
         super().__init__(browser)
 
