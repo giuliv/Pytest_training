@@ -65,7 +65,7 @@ def test_login(browser):
 
     time.sleep(3)
     venues.clickbody()
-    my_venue = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located(('id', 'stat-avg_order_size')))
+    my_venue = WebDriverWait(browser, 16).until(EC.presence_of_all_elements_located(('id', 'stat-avg_order_size')))
     print('Esperando explicitamente')
 
     item = CrudItem(browser)
