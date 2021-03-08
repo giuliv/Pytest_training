@@ -39,6 +39,10 @@ class ConnectLoginPage(BasePage):
         login_result = self.get_elements(self.LOGIN_RESULT(phrase))
         return len(login_result)
 
+    def login_to_connect(self, username, password):
+        self.type_on_element(self.USER_INPUT, username + Keys.RETURN)
+        self.type_on_element(self.PWD_INPUT, password + Keys.RETURN)
+        self.click_on_element(self.LOGIN_BTN)
 
     def writeuser(self, username):
         #user_input = self.browser.find_element(*self.USER_INPUT)

@@ -60,6 +60,8 @@ class CrudItem(BasePage):
         # return len(type_results)
         # self.get_element(self.DrinkType)
 
+#click on save button
+    #minucula y gion bajo
     def SaveItem(self):
         self.click_on_element(self.SAVE_BTN)
 

@@ -5,10 +5,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 from selenium.webdriver.support import expected_conditions as EC
-import logging
+
 
 from selenium.webdriver.support.wait import WebDriverWait
-
+from generics.config import TestData
 from pages.crud_item import CrudItem
 from pages.login import ConnectLoginPage
 from pages.login_venue import LoginToVenue
@@ -17,47 +17,28 @@ from pages.login_venue import LoginToVenue
 @pytest.fixture
 def browser():
     driver = Chrome()
+    driver.maximize_window()
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
 
 
 def test_login(browser):
-    URL = 'https://connect.sandbox.appetize-dev.com/login'
-    USERNAME = 'qaregressionteam'
-    PWD = '@ppetiz3!'
     PHRASE = 'Login'
     VENUE = '393'
-    NAME_ITEM = 'autogiuli'
-    COST_ITEM = '11'
-    TYPE_ITEM = 'drink'
-    TITLE_PAGE = (By.XPATH, '/html/head/')
-    TITLE = 'Appetize Connect - Login'
-    TITLE1 = 'Appetize Connect - Login'
-    VENUE_SEARCH_BAR = (By.XPATH, '/html/body/div[1]/main/div[2]/div/input')
 
     login_page = ConnectLoginPage(browser)
     login_page.load()
 
     time.sleep(3)
 
-    login_page.title_connect(TITLE)
+    login_page.title_connect(TestData.TITLE)
     assert login_page.login_result_count(PHRASE) == 1, "Login button hasn't been found"
-    login_page.writeuser(USERNAME)
-
-
-    pwd_input = browser.find_element_by_id('password')
-    pwd_input.send_keys(PWD + Keys.RETURN)
-    pwd_input.send_keys(Keys.RETURN)
-
-    login_page.writepassword(PWD)
-    login_page.pressloginbtn()
-
-    #login to venue
+    login_page.login_to_connect(TestData.USERNAME, TestData.PWD)
 
     time.sleep(5)
     venues = LoginToVenue(browser)
-    venues.searchvenue(VENUE)
+    venues.searchvenue(TestData.VENUE)
 
     time.sleep(3)
 
@@ -76,14 +57,18 @@ def test_login(browser):
     item.clickITEM_I()
     time.sleep(8)
 
-    #CREATE ITEM
 
+    #CREATE ITEM
+def test_create_item(browser):
+    test_login(browser)
+
+    item = CrudItem(browser)
     item.clickCreate()
     time.sleep(2)
 
-    item.NameItem(NAME_ITEM)
+    item.NameItem(TestData.NAME_ITEM)
 
-    item.CostItem(COST_ITEM)
+    item.CostItem(TestData.COST_ITEM)
 
     item.TypeItem()
 
@@ -93,15 +78,17 @@ def test_login(browser):
     item.SaveItem()
     time.sleep(8)
 
-
-    item.SearchItem(NAME_ITEM)
+    item.SearchItem(TestData.NAME_ITEM)
     time.sleep(2)
 
     ##UPDATE ITEM
+def test_update_item(browser):
 
+    test_create_item(browser)
     result_item_search = browser.find_elements_by_css_selector('body > div.container-fluid.page-wrapper.js-wrapper > main > div.listing.js-listing > div.table-responsive > table > tbody > tr')
     assert len(result_item_search) > 0, "There are no results of the searched item"
 
+    item = CrudItem(browser)
     item.ItemSearched()
     item.EditPrice()
     new_price = '20'
@@ -110,8 +97,11 @@ def test_login(browser):
     item.ReturnItemsList()
 
 
-    ##DELETE
+    ##DELET
+def test_delete_item(browser):
 
+    test_update_item(browser)
+    item = CrudItem(browser)
     time.sleep(2)
     item.clickOption()
 
