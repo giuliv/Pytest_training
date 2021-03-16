@@ -31,12 +31,12 @@ class ConnectLoginPage(BasePage):
         return title_result.text
 
     @classmethod
-    def LOGIN_RESULT(cls, phrase):
+    def login_result(cls, phrase):
         xpath = f"/html/body/div/div/form[1]/div[4]/*[contains(text(), '{phrase}')]"
         return (By.XPATH, xpath)
 
     def login_result_count(self, phrase):
-        login_result = self.get_elements(self.LOGIN_RESULT(phrase))
+        login_result = self.get_elements(self.login_result(phrase))
         return len(login_result)
 
     def login_to_connect(self, username, password):
@@ -44,13 +44,13 @@ class ConnectLoginPage(BasePage):
         self.type_on_element(self.PWD_INPUT, password + Keys.RETURN)
         self.click_on_element(self.LOGIN_BTN)
 
-    def writeuser(self, username):
+    def write_user(self, username):
         #user_input = self.browser.find_element(*self.USER_INPUT)
         #user_input.send_keys(username + Keys.RETURN)
         self.type_on_element(self.USER_INPUT, username + Keys.RETURN)
 
-    def writepassword(self, password):
+    def write_password(self, password):
         self.type_on_element(self.PWD_INPUT, password + Keys.RETURN)
 
-    def pressloginbtn(self):
+    def press_login_btn(self):
         self.click_on_element(self.LOGIN_BTN)

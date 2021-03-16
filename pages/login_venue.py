@@ -8,12 +8,12 @@ class LoginToVenue(BasePage):
     BTN_VENUE = (By.XPATH, '//*[@id="DataTables_Table_0"]/tbody/tr[1]/td[5]/div/button[2]')
     BODY = (By.XPATH, '/html/body/div[1]/main')
 
-    def searchvenue(self, venue):
+    def search_venue(self, venue):
         self.type_on_element(self.SEARCH_BAR, venue + Keys.RETURN)
         #self.browser.get(self.SEARCH_BAR, venue + Keys.RETURN)
 
-    def clickLogin(self):
+    def click_login(self):
         self.click_on_element(self.BTN_VENUE)
 
-    def clickbody(self):
+    def click_body(self):
         self.click_on_element(self.BODY)

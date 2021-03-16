@@ -38,19 +38,19 @@ def test_login(browser):
 
     time.sleep(5)
     venues = LoginToVenue(browser)
-    venues.searchvenue(TestData.VENUE)
+    venues.search_venue(TestData.VENUE)
 
     time.sleep(3)
 
-    venues.clickLogin()
+    venues.click_login()
 
     time.sleep(3)
-    venues.clickbody()
+    venues.click_body()
     my_venue = WebDriverWait(browser, 16).until(EC.presence_of_all_elements_located(('id', 'stat-avg_order_size')))
     print('Esperando explicitamente')
 
     item = CrudItem(browser)
-    item.clickItem()
+    item.click_Item()
 
     time.sleep(3)
 
@@ -63,22 +63,22 @@ def test_create_item(browser):
     test_login(browser)
 
     item = CrudItem(browser)
-    item.clickCreate()
+    item.click_create()
     time.sleep(2)
 
-    item.NameItem(TestData.NAME_ITEM)
+    item.name_item(TestData.NAME_ITEM)
 
-    item.CostItem(TestData.COST_ITEM)
+    item.cost_item(TestData.COST_ITEM)
 
-    item.TypeItem()
+    item.type_item()
 
-    item.DrinkType()
+    item.drink_type()
     time.sleep(2)
 
-    item.SaveItem()
+    item.save_item()
     time.sleep(8)
 
-    item.SearchItem(TestData.NAME_ITEM)
+    item.search_item(TestData.NAME_ITEM)
     time.sleep(2)
 
     ##UPDATE ITEM
@@ -89,12 +89,12 @@ def test_update_item(browser):
     assert len(result_item_search) > 0, "There are no results of the searched item"
 
     item = CrudItem(browser)
-    item.ItemSearched()
-    item.EditPrice()
+    item.item_searched()
+    item.edit_price()
     new_price = '20'
-    item.WriteNewPrice(new_price)
+    item.write_new_price(new_price)
     time.sleep(3)
-    item.ReturnItemsList()
+    item.return_items_list()
 
 
     ##DELET
@@ -103,11 +103,11 @@ def test_delete_item(browser):
     test_update_item(browser)
     item = CrudItem(browser)
     time.sleep(2)
-    item.clickOption()
+    item.click_Option()
 
     time.sleep(2)
 
-    item.clickDelete()
+    item.click_delete()
     time.sleep(1)
 
     item.delete_item()

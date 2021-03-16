@@ -33,25 +33,25 @@ class CrudItem(BasePage):
         xpath = f"//*[@id='type']/option[4]//"
         return (By.XPATH, xpath)
 
-    def clickItem(self):
+    def click_Item(self):
         self.click_on_element(self.ITEM_BTN)
 
     def clickITEM_I(self):
         self.click_on_element(self.ITEM_ITEM_BTN)
 
-    def clickCreate(self):
+    def click_create(self):
         self.click_on_element(self.CREATE_BTN)
 
-    def NameItem(self, itemName):
+    def name_item(self, itemName):
         self.type_on_element(self.ITEM_NAME, itemName + Keys.RETURN)
 
-    def CostItem(self, itemCost):
+    def cost_item(self, itemCost):
         self.type_on_element(self.ITEM_COST, itemCost + Keys.RETURN)
 
-    def TypeItem(self):
+    def type_item(self):
         self.click_on_element(self.IType_drop)
 
-    def DrinkType(self):
+    def drink_type(self):
         # tp_results = self.click_on_element(self.Type_RESULTS(phrase))
         # return len(tp_results)
         self.click_on_element(self.DRINK_BTN)
@@ -62,34 +62,33 @@ class CrudItem(BasePage):
 
 #click on save button
     #minucula y gion bajo
-    def SaveItem(self):
+    def save_item(self):
         self.click_on_element(self.SAVE_BTN)
 
-    def SearchItem(self, itemName):
+    def search_item(self, itemName):
         # self.get_element(self.result_item_search, itemName + Keys.RETURN)
         self.type_on_element(self.SEARCH_BAR, itemName + Keys.RETURN)
 
-    def ItemLocated(self, itemName):
+    def item_located(self, itemName):
         item_result = self.click_on_element(self.get_elements(self.result_item_search))
         return len(item_result)
 
-    def ItemSearched(self):
+    def item_searched(self):
         self.click_on_element(self.ITEM_SEARCHED)
 
-    def EditPrice(self):
+    def edit_price(self):
         self.click_on_element(self.PEN_BTN)
 
-    def WriteNewPrice(self,new_price):
+    def write_new_price(self, new_price):
         self.type_on_element(self.PRICE_FIELD, new_price + Keys.RETURN)
 
-    def ReturnItemsList(self):
+    def return_items_list(self):
         self.click_on_element(self.ITEM_UP_BTN)
 
-    def clickOption(self):
+    def click_Option(self):
         self.click_on_element(self.OPTIONS_ITEMS)
 
-
-    def clickDelete(self):
+    def click_delete(self):
         self.click_on_element(self.DELETE_BTN)
 
     def delete_item(self):
